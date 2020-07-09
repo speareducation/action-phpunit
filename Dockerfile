@@ -1,3 +1,3 @@
-FROM spear/php-fpm:1.11-7.2
+FROM spear/php-fpm:latest
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
