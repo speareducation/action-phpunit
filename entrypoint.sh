@@ -5,13 +5,15 @@ cp .env .env.bak 2>/dev/null
 cp .env.github .env.testing
 cp .env.github .env
 
+composer dump-autoload # ensure fresh file paths since composer is run in another step
+
 php artisan --env=testing migrate
 
 if [ -z "$INPUT_TARGETDIR" ]
 then
     outputFile=""
 else
-    mkdir $INPUT_TARGETDIR
+    [ ! -d "$INPUT_TARGETDIR" ] && mkdir "$INPUT_TARGETDIR"
 
     if [ -d storage ]
     then
