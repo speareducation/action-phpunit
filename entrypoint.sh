@@ -5,6 +5,8 @@ cp .env .env.bak 2>/dev/null
 cp .env.github .env.testing
 cp .env.github .env
 
+composer dump-autoload
+
 php artisan --env=testing migrate
 
 if [ -z "$INPUT_TARGETDIR" ]
