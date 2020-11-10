@@ -25,3 +25,5 @@ else
 fi
 
 vendor/bin/phpunit $INPUT_OPTIONS | tee $outputFile
+
+exit $?
