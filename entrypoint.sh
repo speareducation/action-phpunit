@@ -24,10 +24,10 @@ else
     outputFile="$INPUT_TARGETDIR/phpunit-results.txt"
 fi
 
-vendor/bin/phpunit $INPUT_OPTIONS | tee $outputFile
+vendor/bin/phpunit $INPUT_OPTIONS | tee "$outputFile"
 
-SUCCESS=$([ "$(fgrep OK "${outputFile}")" != "" ] && echo 'true' || echo 'false')
-SUMMARY=$(grep -i 'assertions' "${outputFile}" | grep -i 'tests')
+SUCCESS=$([ "$(fgrep OK "$outputFile")" != "" ] && echo 'true' || echo 'false')
+SUMMARY=$(grep -i 'assertions' "$outputFile" | grep -i 'tests')
 RESULT_TEXT=$([ "$SUCCESS" == "true" ] && echo "PASS" || echo "FAIL")
 RESULT_EMOJI=$([ "$SUCCESS" == "true" ] && echo ':white_check_mark:' || echo ':x:')
 
