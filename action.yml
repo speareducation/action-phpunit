@@ -13,3 +13,12 @@ inputs:
   options:
     description: Options to append to phpunit command
     required: false
+outputs:
+  success:
+    description: "'true' or 'false'"
+  summary:
+    description: A short description of the results, including the number of assertions, failures, errors, etc.
+  result-text:
+    description: "'PASS' or 'FAIL'"
+  result-emoji:
+    description: A different emoji depending on whether the tests passed or failed.
