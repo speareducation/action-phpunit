@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 [ ! -f vendor/bin/phpunit ] && echo 'vendor/bin/phpunit not found' && exit 1
 
 cp .env .env.bak 2>/dev/null
