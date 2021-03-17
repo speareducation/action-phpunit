@@ -11,9 +11,11 @@ inputs:
     description: Target Directory
     required: true
   options:
-    description: Options to append to phpunit command
+    description: (DEFUNCT) Options to append to phpunit command
     required: false
 outputs:
+  coverage:
+    description: "numeric line coverage"
   success:
     description: "'true' or 'false'"
   summary:
