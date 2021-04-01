@@ -5,29 +5,14 @@ cp .env .env.bak 2>/dev/null
 cp .env.github .env.testing
 cp .env.github .env
 
-composer dump-autoload # ensure fresh file paths since composer is run in another step
+composer dump-autoload
 
-php artisan --env=testing migrate
-
-if [ -z "$INPUT_TARGETDIR" ]
-then
-    outputFile=""
-else
-    [ ! -d "$INPUT_TARGETDIR" ] && mkdir "$INPUT_TARGETDIR"
-
-    if [ -d storage ]
-    then
-        mkdir -p storage/logs
-        ln -s $INPUT_TARGETDIR/logs storage/logs
-    fi
-
-    outputFile="$INPUT_TARGETDIR/phpunit-results.txt"
-fi
+mkdir -p storage/logs 2>/dev/null
 
 vendor/bin/phpunit \
     --coverage-text="$INPUT_TARGETDIR/coverage.txt" \
     --coverage-html="$INPUT_TARGETDIR/coverage-html" |\
-    tee "$outputFile"
+    tee "$INPUT_TARGETDIR/phpunit-results.txt"
 
 COVERAGE=$(head -n9 "$INPUT_TARGETDIR/coverage.txt" | egrep '^  Lines' | awk '{ print $2 }' | sed 's/%//g')
 SUCCESS=$([ "$(fgrep OK "$outputFile")" != "" ] && echo 'true' || echo 'false')
