@@ -4,9 +4,18 @@ branding:
   icon: check-circle
   color: green
 runs:
-  using: docker
-  image: Dockerfile
+  using: composite
+  steps:
+    - run: |
+        docker run --rm -it \
+          -v $(pwd):/src \
+          -w /src \
+          -e INPUT_TARGETDIR=${{ inputs.targetDir }}
+          --entrypoint=./entrypoint.sh ${{ inputs.dockerImage }}
+      shell: bash
 inputs:
+  dockerImage:
+    description: Name of docker image to use to run tests
   targetDir:
     description: Target Directory
     required: true
