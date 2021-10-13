@@ -5,6 +5,8 @@ cp .env .env.bak 2>/dev/null
 cp .env.github .env.testing
 cp .env.github .env
 
+apk add php-xmlwriter
+
 composer dump-autoload # ensure fresh file paths since composer is run in another step
 
 php artisan --env=testing migrate
