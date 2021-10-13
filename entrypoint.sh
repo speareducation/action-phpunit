@@ -5,7 +5,7 @@ cp .env .env.bak 2>/dev/null
 cp .env.github .env.testing
 cp .env.github .env
 
-apk add php-xmlwriter php-pcov
+apk add php-xmlwriter
 
 cat > /etc/php/conf.d/98_pcov.ini <<EOT
 [pcov]
