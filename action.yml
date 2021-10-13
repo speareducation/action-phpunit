@@ -7,7 +7,7 @@ runs:
   using: composite
   steps:
     - run: |
-        docker run --rm -it \
+        docker run --rm \
           -v $(pwd):/src \
           -w /src \
           -e INPUT_TARGETDIR=${{ inputs.targetDir }} \
