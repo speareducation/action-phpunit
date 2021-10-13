@@ -10,7 +10,9 @@ runs:
         docker run --rm -it \
           -v $(pwd):/src \
           -w /src \
-          -e INPUT_TARGETDIR=${{ inputs.targetDir }}
+          -e INPUT_TARGETDIR=${{ inputs.targetDir }} \
+          -e SKIP_SECRETS=1 \
+          -e SKIP_SERVICES=1 \
           --entrypoint=./entrypoint.sh ${{ inputs.dockerImage }}
       shell: bash
 inputs:
