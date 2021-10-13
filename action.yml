@@ -1,3 +1,4 @@
+---
 name: Spear PHPUnit Runner
 description: A GitHub action to run PHPUnit and record test coverage
 branding:
@@ -13,7 +14,7 @@ runs:
           -e INPUT_TARGETDIR=${{ inputs.targetDir }} \
           -e SKIP_SECRETS=1 \
           -e SKIP_SERVICES=1 \
-          --entrypoint=./entrypoint.sh ${{ inputs.dockerImage }}
+          --entrypoint=/src/entrypoint.sh ${{ inputs.dockerImage }}
       shell: bash
 inputs:
   dockerImage:
