@@ -8,19 +8,27 @@ runs:
   using: composite
   steps:
     - run: |
+        docker network ls
+        
+        set
+        
         cp ${GITHUB_ACTION_PATH}/entrypoint.sh .
         docker run --rm \
           -v $(pwd):/src \
           -w /src \
+          --network ${{ inputs.containerNetwork }}
           -e INPUT_TARGETDIR=${{ inputs.targetDir }} \
           -e SKIP_SECRETS=1 \
           -e SKIP_SERVICES=1 \
           --entrypoint=/src/entrypoint.sh ${{ inputs.dockerImage }}
       shell: bash
 inputs:
+  containerNetwork:
+    description: Network to use when creating the test container
+    required: true
   dockerImage:
     description: Name of docker image to use to run tests
-    required: false
+    required: true
   targetDir:
     description: Target Directory
     required: true
