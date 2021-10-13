@@ -18,6 +18,7 @@ runs:
 inputs:
   dockerImage:
     description: Name of docker image to use to run tests
+    required: false
   targetDir:
     description: Target Directory
     required: true
@@ -27,9 +28,13 @@ inputs:
 outputs:
   success:
     description: "'true' or 'false'"
+    value: ""
   summary:
     description: A short description of the results, including the number of assertions, failures, errors, etc.
+    value: ""
   result-text:
     description: "'PASS' or 'FAIL'"
+    value: ""
   result-emoji:
     description: A different emoji depending on whether the tests passed or failed.
+    value: ""
