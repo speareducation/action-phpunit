@@ -9,8 +9,9 @@ runs:
   steps:
     - run: |
         cp ${GITHUB_ACTION_PATH}/entrypoint.sh .
+        mkdir -p "${{ inputs.targetDir }}"
         docker run --rm \
-          -v $(pwd):/src \
+          -v $(pwd):/src:rw \
           -w /src \
           --network ${{ inputs.containerNetwork }} \
           -e INPUT_TARGETDIR="${{ inputs.targetDir }}" \
@@ -18,6 +19,9 @@ runs:
           -e SKIP_SECRETS=1 \
           -e SKIP_SERVICES=1 \
           --entrypoint=/src/entrypoint.sh ${{ inputs.dockerImage }}
+        [[ -d ${{ inputs.targetDir }} ]] && echo "CI Results dir exists"
+        
+        
       shell: bash
 inputs:
   containerNetwork:

@@ -5,7 +5,13 @@ cp .env .env.bak 2>/dev/null
 cp .env.github .env.testing
 cp .env.github .env
 
-apk add php-xmlwriter
+apk add php-xmlwriter php-pcov
+
+cat > /etc/php/conf.d/98_pcov.ini <<EOT
+[pcov]
+extension=pcov
+pcov.enabled=1
+EOT
 
 composer dump-autoload # ensure fresh file paths since composer is run in another step
 
