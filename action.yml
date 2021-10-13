@@ -8,6 +8,9 @@ runs:
   using: composite
   steps:
     - run: |
+        pwd
+        
+        [[ -f entrypoint.sh ]] && echo "Found entrypoint" || echo "Entrypoint script not found"
         docker run --rm \
           -v $(pwd):/src \
           -w /src \
