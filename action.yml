@@ -16,7 +16,7 @@ runs:
         docker run --rm \
           -v $(pwd):/src \
           -w /src \
-          --network ${{ inputs.containerNetwork }}
+          --network ${{ inputs.containerNetwork }} \
           -e INPUT_TARGETDIR=${{ inputs.targetDir }} \
           -e SKIP_SECRETS=1 \
           -e SKIP_SERVICES=1 \
