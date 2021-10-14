@@ -8,6 +8,7 @@ runs:
   using: composite
   steps:
     - run: |
+        set -x
         cp ${GITHUB_ACTION_PATH}/entrypoint.sh .
         mkdir -p "${{ inputs.targetDir }}"
         docker run --rm \
@@ -32,7 +33,7 @@ runs:
         echo "::set-output name=summary::${SUMMARY}"
         echo "::set-output name=result-text::${RESULT_TEXT}"
         echo "::set-output name=result-emoji::${RESULT_EMOJI}"
-
+        echo "Done running unit tests"
       shell: bash
 inputs:
   containerNetwork:
