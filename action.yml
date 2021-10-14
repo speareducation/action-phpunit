@@ -19,8 +19,6 @@ runs:
           -e SKIP_SECRETS=1 \
           -e SKIP_SERVICES=1 \
           --entrypoint=/src/entrypoint.sh ${{ inputs.dockerImage }}
-        [[ -d ${{ inputs.targetDir }} ]] && echo "CI Results dir exists"
-        
         
       shell: bash
 inputs:
