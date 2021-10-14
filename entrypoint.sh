@@ -28,7 +28,6 @@ else
         mkdir -p storage/logs
         ln -s $INPUT_TARGETDIR/logs storage/logs
     fi
-
     outputFile="$INPUT_TARGETDIR/phpunit-results.txt"
 fi
 

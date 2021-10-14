@@ -19,7 +19,7 @@ runs:
           -e SKIP_SECRETS=1 \
           -e SKIP_SERVICES=1 \
           --entrypoint=/src/entrypoint.sh ${{ inputs.dockerImage }}
-        
+
       shell: bash
 inputs:
   containerNetwork:
@@ -37,13 +37,9 @@ inputs:
 outputs:
   success:
     description: "'true' or 'false'"
-    value: ""
   summary:
     description: A short description of the results, including the number of assertions, failures, errors, etc.
-    value: ""
   result-text:
     description: "'PASS' or 'FAIL'"
-    value: ""
   result-emoji:
     description: A different emoji depending on whether the tests passed or failed.
-    value: ""
