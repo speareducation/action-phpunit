@@ -33,16 +33,3 @@ fi
 
 vendor/bin/phpunit $INPUT_OPTIONS | tee "$outputFile"
 
-SUCCESS=$(cat $outputFile | grep -q OK && echo 'true' || echo 'false')
-SUMMARY=$(grep -i 'assertions' "$outputFile" | grep -i 'tests')
-RESULT_TEXT=$([ "$SUCCESS" == "true" ] && echo "PASS" || echo "FAIL")
-RESULT_EMOJI=$([ "$SUCCESS" == "true" ] && echo ':white_check_mark:' || echo ':x:')
-
-echo SUCCESS="${SUCCESS}"
-echo SUMMARY="${SUMMARY}"
-
-echo "::set-output name=success::${SUCCESS}"
-echo "::set-output name=summary::${SUMMARY}"
-echo "::set-output name=result-text::${RESULT_TEXT}"
-echo "::set-output name=result-emoji::${RESULT_EMOJI}"
-
