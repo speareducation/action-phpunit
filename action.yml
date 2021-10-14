@@ -7,7 +7,8 @@ branding:
 runs:
   using: composite
   steps:
-    - run: |
+    - id: run-tests
+      run: |
         set -x
         cp ${GITHUB_ACTION_PATH}/entrypoint.sh .
         mkdir -p "${{ inputs.targetDir }}"
@@ -51,9 +52,14 @@ inputs:
 outputs:
   success:
     description: "'true' or 'false'"
+    value: ${{ steps.run-tests.outputs.success }}
   summary:
     description: A short description of the results, including the number of assertions, failures, errors, etc.
+    value: ${{ steps.run-tests.outputs.summary }}
   result-text:
     description: "'PASS' or 'FAIL'"
+    value: ${{ steps.run-tests.outputs.result-text }}
   result-emoji:
     description: A different emoji depending on whether the tests passed or failed.
+    value: ${{ steps.run-tests.outputs.result-emoji }}
+
