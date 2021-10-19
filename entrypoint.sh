@@ -13,6 +13,10 @@ extension=pcov
 pcov.enabled=1
 EOT
 
+if [[ -n "${INPUT_COMPOSER_VERSION}" ]]; then
+  rm -rf ~/.composer/cache
+  composer self-update -- ${INPUT_COMPOSER_VERSION}
+fi
 composer dump-autoload # ensure fresh file paths since composer is run in another step
 
 php artisan --env=testing migrate

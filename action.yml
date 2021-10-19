@@ -16,8 +16,9 @@ runs:
           -v $(pwd):/src:rw \
           -w /src \
           --network ${{ inputs.containerNetwork }} \
-          -e INPUT_TARGETDIR="${{ inputs.targetDir }}" \
+          -e INPUT_COMPOSER_VERSION="${{ inputs.composerVersion }}" \
           -e INPUT_OPTIONS="${{ inputs.options }}" \
+          -e INPUT_TARGETDIR="${{ inputs.targetDir }}" \
           -e SKIP_SECRETS=1 \
           -e SKIP_SERVICES=1 \
           --entrypoint=/src/entrypoint.sh ${{ inputs.dockerImage }}
@@ -48,6 +49,9 @@ inputs:
     required: true
   options:
     description: Options to append to phpunit command
+    required: false
+  composerVersion:
+    description: Use version 1 or 2 of composer
     required: false
 outputs:
   success:
