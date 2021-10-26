@@ -13,7 +13,6 @@ runs:
         cp ${GITHUB_ACTION_PATH}/entrypoint.sh .
         mkdir -p "${{ inputs.targetDir }}"
         docker run --rm \
-          -u ${UID} \
           -v $(pwd):/src:rw \
           -w /src \
           --network ${{ inputs.containerNetwork }} \
@@ -31,6 +30,9 @@ runs:
         
         echo SUCCESS="${SUCCESS}"
         echo SUMMARY="${SUMMARY}"
+        
+        echo "Fixing permissions..."
+        sudo chown -R ${USER} .ci-results
         
         echo "::set-output name=success::${SUCCESS}"
         echo "::set-output name=summary::${SUMMARY}"
