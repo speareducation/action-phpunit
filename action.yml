@@ -13,6 +13,7 @@ runs:
         cp ${GITHUB_ACTION_PATH}/entrypoint.sh .
         mkdir -p "${{ inputs.targetDir }}"
         docker run --rm \
+          -u ${UID} \
           -v $(pwd):/src:rw \
           -w /src \
           --network ${{ inputs.containerNetwork }} \
