@@ -32,7 +32,7 @@ runs:
         echo SUMMARY="${SUMMARY}"
         
         echo "Fixing permissions..."
-        sudo chown -R ${USER} .ci-results
+        sudo chown -R ${USER} .
         
         echo "::set-output name=success::${SUCCESS}"
         echo "::set-output name=summary::${SUMMARY}"
