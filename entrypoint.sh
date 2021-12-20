@@ -15,10 +15,9 @@ then
 else
     [ ! -d "$INPUT_TARGETDIR" ] && mkdir "$INPUT_TARGETDIR"
 
-    if [ -d storage ]
+    if [ -d storage/logs ]
     then
         mkdir -p storage/logs
-        ln -s $INPUT_TARGETDIR/logs storage/logs
     fi
 
     outputFile="$INPUT_TARGETDIR/phpunit-results.txt"
