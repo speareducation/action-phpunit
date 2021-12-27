@@ -18,14 +18,14 @@ runs:
           VOLUMES="-v $(pwd):/src:rw"
         fi
         docker run --rm ${VOLUMES} \
-          -w /src \
+          -w "${{github.workspace}}" \
           --network ${{ inputs.containerNetwork }} \
           -e INPUT_COMPOSER_VERSION="${{ inputs.composerVersion }}" \
           -e INPUT_OPTIONS="${{ inputs.options }}" \
           -e INPUT_TARGETDIR="${{ inputs.targetDir }}" \
           -e SKIP_SECRETS=1 \
           -e SKIP_SERVICES=1 \
-          --entrypoint=/src/entrypoint.sh ${{ inputs.dockerImage }}
+          --entrypoint="${{github.workspace}}/entrypoint.sh" ${{ inputs.dockerImage }}
         outputFile="${{ inputs.targetDir }}/phpunit-results.txt"
         SUCCESS=$(cat $outputFile | grep -q OK && echo 'true' || echo 'false')
         SUMMARY=$(grep -i 'assertions' "$outputFile" | grep -i 'tests')
