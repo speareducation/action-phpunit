@@ -12,8 +12,12 @@ runs:
         set -x
         cp ${GITHUB_ACTION_PATH}/entrypoint.sh .
         mkdir -p "${{ inputs.targetDir }}"
-        docker run --rm \
-          -v $(pwd):/src:rw \
+        if [[ "x${{job.container.id}}" != "x" ]]; then
+          VOLUMES="--volumes-from ${{job.container.id}}"
+        else
+          VOLUMES="-v $(pwd):/src:rw"
+        fi
+        docker run --rm ${VOLUMES} \
           -w /src \
           --network ${{ inputs.containerNetwork }} \
           -e INPUT_COMPOSER_VERSION="${{ inputs.composerVersion }}" \
