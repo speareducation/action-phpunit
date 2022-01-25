@@ -23,6 +23,7 @@ runs:
           -e INPUT_COMPOSER_VERSION="${{ inputs.composerVersion }}" \
           -e INPUT_OPTIONS="${{ inputs.options }}" \
           -e INPUT_TARGETDIR="${{ inputs.targetDir }}" \
+          -e INPUT_RUN_MIGRATIONS="${{ inputs.runMigrations }}" \
           -e SKIP_SECRETS=1 \
           -e SKIP_SERVICES=1 \
           --entrypoint="${GITHUB_WORKSPACE}/entrypoint.sh" ${{ inputs.dockerImage }}
@@ -56,6 +57,9 @@ inputs:
     required: false
   composerVersion:
     description: Use version 1 or 2 of composer
+    required: false
+  runMigrations:
+    description: Set to false to disable running of migrations
     required: false
 outputs:
   success:
