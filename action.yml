@@ -28,7 +28,7 @@ runs:
           --entrypoint="${GITHUB_WORKSPACE}/entrypoint.sh" ${{ inputs.dockerImage }}
         outputFile="${{ inputs.targetDir }}/phpunit-results.txt"
         SUCCESS=$(cat $outputFile | grep -q OK && echo 'true' || echo 'false')
-        SUMMARY=$(grep -i 'assertions' "$outputFile" | grep -i 'tests')
+        SUMMARY=$(grep -i 'assertions' "$outputFile" | grep -i 'tests' || echo '')
         RESULT_TEXT=$([ "$SUCCESS" == "true" ] && echo "PASS" || echo "FAIL")
         RESULT_EMOJI=$([ "$SUCCESS" == "true" ] && echo ':white_check_mark:' || echo ':x:')
         
