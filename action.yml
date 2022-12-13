@@ -36,10 +36,10 @@ runs:
         echo SUCCESS="${SUCCESS}"
         echo SUMMARY="${SUMMARY}"
         
-        echo "::set-output name=success::${SUCCESS}"
-        echo "::set-output name=summary::${SUMMARY}"
-        echo "::set-output name=result-text::${RESULT_TEXT}"
-        echo "::set-output name=result-emoji::${RESULT_EMOJI}"
+        echo "success=${SUCCESS}" >> ${GITHUB_OUTPUT}
+        echo "summary=${SUMMARY}" >> ${GITHUB_OUTPUT}
+        echo "result-text=${RESULT_TEXT}" >> ${GITHUB_OUTPUT}
+        echo "result-emoji=${RESULT_EMOJI}" >> ${GITHUB_OUTPUT}
         echo "Done running unit tests"
       shell: bash
 inputs:
