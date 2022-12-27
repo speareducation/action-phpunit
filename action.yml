@@ -15,7 +15,7 @@ runs:
         if [[ "x${{job.container.id}}" != "x" ]]; then
           VOLUMES="--volumes-from ${{job.container.id}}"
         else
-          VOLUMES="-v $(pwd):${GHITHUB_WORKSPACE}:rw"
+          VOLUMES="-v $(pwd):${GITHUB_WORKSPACE}:rw"
         fi
         docker run --rm ${VOLUMES} \
           -w "${GITHUB_WORKSPACE}" \
