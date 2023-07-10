@@ -19,6 +19,7 @@ if [[ -n "${INPUT_COMPOSER_VERSION}" ]]; then
 fi
 composer dump-autoload # ensure fresh file paths since composer is run in another step
 
+php artisan --env=testing migrate:status
 php artisan --env=testing migrate
 
 if [ -z "$INPUT_TARGETDIR" ]
