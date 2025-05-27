@@ -5,13 +5,19 @@ cp .env .env.bak 2>/dev/null
 cp .env.github .env.testing
 cp .env.github .env
 
+if [[ ! $(php -m) =~ xmlwriter ]]
+then
 apk add php-xmlwriter
+fi
 
+if [[ ! $(php -m) =~ pcov ]]
+then
 cat > /etc/php/conf.d/98_pcov.ini <<EOT
 [pcov]
 extension=pcov
 pcov.enabled=1
 EOT
+fi
 
 if [[ -n "${INPUT_COMPOSER_VERSION}" ]]; then
   rm -rf ~/.composer/cache
